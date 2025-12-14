@@ -1,4 +1,89 @@
-// Core character and game types
+export interface StatInfo {
+  value: number;
+  modifier: number;
+  icon?: string;
+  label?: string;
+}
+
+export interface MainCharacterInfo {
+  name: string;
+  level: Record<string, any>;
+  hollowing: Record<string, any>;
+  souls: Record<string, any>;
+}
+
+export interface ResourceInfo {
+  current: number;
+  max: number;
+  icon?: string;
+  label?: string;
+}
+
+export interface Character {
+  main: MainCharacterInfo;
+  stats: Record<string, StatInfo>;
+  resources: Record<string, ResourceInfo>;
+}
+
+export interface InventoryItem {
+  id: string;
+  name: string;
+  type: string;
+  slot: string;
+  icon?: string;
+  image?: string;
+  damageType?: string;
+  dice?: string;
+  scalingStat?: string;
+  twoHanded?: boolean;
+  flatBonus?: number;
+  armorType?: string;
+  catalystType?: string;
+  consumableType?: string;
+  effect?: string;
+  quantity?: number;
+  spellType?: string;
+  effectType?: string;
+  manaCost?: number;
+  duration?: number;
+  requiresCatalyst?: string;
+}
+
+export interface Inventory {
+  weapons: InventoryItem[];
+  armors: InventoryItem[];
+  catalysts: InventoryItem[];
+  items: InventoryItem[];
+  spells: InventoryItem[];
+}
+
+export interface NewCharacterData {
+  character: Character;
+  inventory: Inventory;
+}
+
+// API response models
+export interface CharacterCreate {
+  character: Character;
+  inventory: Inventory;
+}
+
+export interface CharacterUpdate {
+  character?: Character;
+  inventory?: Inventory;
+}
+
+export interface CharacterResponse {
+  id: number;
+  character: Character;
+  inventory: Inventory;
+}
+
+export interface MessageResponse {
+  message: string;
+}
+
+// Legacy types (keeping for backward compatibility during transition)
 export interface CharacterData {
   id: number;
   name: string;
@@ -90,6 +175,15 @@ export interface CharacterInfoProps {
 
 export interface LoadingStateProps {
   message?: string;
+}
+
+// New component props types for updated data structure
+export interface NewInventorySectionProps {
+  inventory: Inventory;
+}
+
+export interface NewSpellsSectionProps {
+  spells: InventoryItem[];
 }
 
 // API related types

@@ -18,125 +18,37 @@
 
 body {
   font-family: 'Garamond', 'Georgia', serif;
-  background-color: var(--dark-bg);
+  background: radial-gradient(ellipse at center, #1a1410 0%, #0c0a08 70%);
   color: var(--gold-text);
   min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  overflow-x: auto;
-  display: flex;
+  line-height: 1.4;
+  letter-spacing: 0.3px;
 }
 
 #app {
   width: 100%;
-  max-width: 1400px;
-  margin: 0 auto;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .character-sheet {
+  width: 100%;
   background: linear-gradient(to bottom, #2a1f18 0%, #1a1410 100%);
   border: 3px solid var(--border-color);
   border-radius: 4px;
-  padding: 10px;
+  padding: 20px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8);
+  text-align: center;
+  max-height: 100vh;
+  overflow-y: auto;
 }
 
-/* Simplified Tab Bar */
-.tab-bar {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
-  align-items: center;
-}
 
-.tab-button {
-  flex: 1;
-  padding: 12px;
-  background: rgba(20, 15, 10, 0.5);
-  border: 2px solid var(--border-color);
-  border-radius: 4px;
-  color: var(--gold-text);
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
 
-.tab-button:hover {
-  background: rgba(20, 15, 10, 0.8);
-}
 
-.tab-button.active {
-  background: var(--dark-brown);
-  border-color: var(--gold-bright);
-  color: var(--gold-bright);
-  box-shadow: 0 0 8px rgba(232, 212, 168, 0.3);
-}
-
-/* Edit Controls */
-.edit-controls {
-  display: flex;
-  gap: 8px;
-  margin-left: auto;
-}
-
-.edit-button,
-.save-button,
-.cancel-button,
-.retry-button {
-  padding: 8px 16px;
-  background: var(--dark-brown);
-  border: 2px solid var(--border-color);
-  border-radius: 4px;
-  color: var(--gold-text);
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.edit-button:hover,
-.retry-button:hover {
-  background: rgba(20, 15, 10, 0.8);
-  border-color: var(--gold-bright);
-  color: var(--gold-bright);
-}
-
-.save-button {
-  background: #2a4028;
-  border-color: #408040;
-  color: #88cc88;
-}
-
-.save-button:hover:not(:disabled) {
-  background: #3a5038;
-  border-color: #50a050;
-  color: #aaffaa;
-  box-shadow: 0 0 6px rgba(80, 160, 80, 0.3);
-}
-
-.save-button:disabled,
-.cancel-button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-.cancel-button {
-  background: #402020;
-  border-color: #804040;
-  color: #cc8888;
-}
-
-.cancel-button:hover:not(:disabled) {
-  background: #503030;
-  border-color: var(--red-accent);
-  color: #ffaaaa;
-  box-shadow: 0 0 6px rgba(168, 32, 32, 0.3);
-}
 
 /* Stat Input Fields */
 .stat-input {
@@ -442,134 +354,7 @@ body {
   text-align: right;
 }
 
-/* Weapon Section styles */
-.weapon-section {
-  padding: 20px;
-  max-height: calc(100vh - 100px);
-  display: block;
-}
 
-.weapon-display {
-  display: flex;
-  gap: 20px;
-  background: rgba(20, 15, 10, 0.8);
-  border: 2px solid var(--border-color);
-  border-radius: 4px;
-  padding: 20px;
-  margin-bottom: 20px;
-}
-
-.weapon-icon-container {
-  width: 90px;
-  height: 90px;
-  border: 2px solid var(--border-color);
-  border-radius: 4px;
-  background: linear-gradient(135deg, #1a1410 0%, #2a1f18 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.weapon-large-icon {
-  width: 70px;
-  height: 70px;
-}
-
-.weapon-info {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.weapon-title {
-  font-size: 20px;
-  font-weight: 700;
-  color: var(--gold-bright);
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  margin: 0;
-  padding-bottom: 10px;
-}
-
-.weapon-stats-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.weapon-stats-row {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-
-.weapon-stat-cell {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: rgba(0, 0, 0, 0.4);
-  border: 1px solid var(--border-color);
-  border-radius: 3px;
-  padding: 8px 6px;
-  min-width: 45px;
-  min-height: 50px;
-  gap: 4px;
-}
-
-.weapon-stat-icon {
-  width: 24px;
-  height: 24px;
-  flex-shrink: 0;
-}
-
-.weapon-stat-value {
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--gold-bright);
-  text-align: center;
-}
-
-.weapon-actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 15px;
-  padding: 0 20px;
-}
-
-.weapon-button {
-  background-color: var(--dark-brown);
-  color: var(--gold-bright);
-  border: 2px solid var(--border-color);
-  padding: 10px 20px;
-  border-radius: 3px;
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 14px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  transition: all 0.2s ease;
-}
-
-.weapon-button:hover {
-  background-color: #3d2e24;
-  border-color: var(--gold-bright);
-  box-shadow: 0 0 8px rgba(232, 212, 168, 0.3);
-}
-
-.add-button {
-  background-color: #2a4028;
-}
-
-.add-button:hover {
-  background-color: #3a5038;
-}
-
-.modify-button {
-  background-color: var(--dark-brown);
-}
 
 /* Special Icon Colors */
 .bar-red {
@@ -654,314 +439,7 @@ body {
   }
 }
 
-/* New Sheet Icons */
-.icon {
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  display: inline-block;
-  width: 24px; /* Adjust size as needed */
-  height: 24px; /* Adjust size as needed */
-}
 
-.icon-attunement {
-  background-image: url(http://darksouls3.wdfiles.com/local--files/image-sets:menu-icons/attunement.png);
-}
-
-.icon-attunement-slots {
-  background-image: url(http://darksouls3.wdfiles.com/local--files/image-sets:menu-icons/attunement-slots.png);
-}
-
-.icon-slots-used {
-  background-image: url(http://darksouls3.wdfiles.com/local--files/image-sets:menu-icons/slots-used.png);
-}
-
-.icon-bleed {
-  background-image: url(http://darksouls3.wdfiles.com/local--files/image-sets:menu-icons/bleed.png);
-}
-
-.icon-bow-range {
-  background-image: url(http://darksouls3.wdfiles.com/local--files/image-sets:menu-icons/bow-range.png);
-}
-
-.icon-covenant {
-  background-image: url(http://darksouls3.wdfiles.com/local--files/image-sets:menu-icons/covenant.png);
-}
-
-.icon-critical-dmg {
-  background-image: url(http://darksouls3.wdfiles.com/local--files/image-sets:menu-icons/critical-dmg.png);
-}
-
-.icon-curse {
-  background-image: url(http://darksouls3.wdfiles.com/local--files/image-sets:menu-icons/curse.png);
-}
-
-.icon-dark-dmg {
-  background-image: url(http://darksouls3.wdfiles.com/local--files/image-sets:menu-icons/dark-dmg.png);
-}
-
-.icon-dark-def1 {
-  background-image: url(http://darksouls3.wdfiles.com/local--files/image-sets:menu-icons/dark-def%281%29.png);
-}
-
-.icon-dark-def2 {
-  background-image: url(http://darksouls3.wdfiles.com/local--files/image-sets:menu-icons/dark-def%282%29.png);
-}
-
-.icon-dark-def {
-  background-image: url(http://darksouls3.wdfiles.com/local--files/image-sets:menu-icons/dark-def.png);
-}
-
-.icon-dark-guard {
-  background-image: url(http://darksouls3.wdfiles.com/local--files/image-sets:menu-icons/dark-guard.png);
-}
-
-.icon-dexterity {
-  background-image: url(http://darksouls3.wdfiles.com/local--files/image-sets:menu-icons/dexterity.png);
-}
-
-.icon-durability {
-  background-image: url(http://darksouls3.wdfiles.com/local--files/image-sets:menu-icons/durability.png);
-}
-
-.icon-endurance {
-  background-image: url(http://darksouls3.wdfiles.com/local--files/image-sets:menu-icons/endurance.png);
-}
-
-.icon-equip-load {
-  background-image: url(http://darksouls3.wdfiles.com/local--files/image-sets:menu-icons/equip-load.png);
-}
-
-.icon-faith {
-  background-image: url(http://darksouls3.wdfiles.com/local--files/image-sets:menu-icons/faith.png);
-}
-
-.icon-fire-dmg {
-  background-image: url(http://darksouls3.wdfiles.com/local--files/image-sets:menu-icons/fire-dmg.png);
-}
-
-.icon-fire-def {
-  background-image: url(http://darksouls3.wdfiles.com/local--files/image-sets:menu-icons/fire-def.png);
-}
-
-.icon-fire-guard {
-  background-image: url(http://darksouls3.wdfiles.com/local--files/image-sets:menu-icons/fire-guard.png);
-}
-
-.icon-fp {
-  background-image: url(http://darksouls3.wdfiles.com/local--files/image-sets:menu-icons/fp.png);
-}
-
-.icon-frost {
-  background-image: url(http://darksouls3.wdfiles.com/local--files/image-sets:menu-icons/frost.png);
-}
-
-.icon-hollowing {
-  background-image: url(http://darksouls3.wdfiles.com/local--files/image-sets:menu-icons/hollowing.png);
-}
-
-.icon-hp {
-  background-image: url(http://darksouls3.wdfiles.com/local--files/image-sets:menu-icons/hp.png);
-}
-
-.icon-intelligence {
-  background-image: url(http://darksouls3.wdfiles.com/local--files/image-sets:menu-icons/intelligence.png);
-}
-
-.icon-item-discovery {
-  background-image: url(http://darksouls3.wdfiles.com/local--files/image-sets:menu-icons/item-discovery.png);
-}
-
-.icon-item-type {
-  background-image: url(http://darksouls3.wdfiles.com/local--files/image-sets:menu-icons/item-type.png);
-}
-
-.icon-level {
-  background-image: url(http://darksouls3.wdfiles.com/local--files/image-sets:menu-icons/level.png);
-}
-
-.icon-lightning-dmg {
-  background-image: url(http://darksouls3.wdfiles.com/local--files/image-sets:menu-icons/lightning-dmg.png);
-}
-
-.icon-lightning-def {
-  background-image: url(http://darksouls3.wdfiles.com/local--files/image-sets:menu-icons/lightning-def.png);
-}
-
-.icon-lightning-guard {
-  background-image: url(http://darksouls3.wdfiles.com/local--files/image-sets:menu-icons/lightning-guard.png);
-}
-
-.icon-luck {
-  background-image: url(http://darksouls3.wdfiles.com/local--files/image-sets:menu-icons/luck.png);
-}
-
-.icon-l-weapon-1 {
-  background-image: url(http://darksouls3.wdfiles.com/local--files/image-sets:menu-icons/l-weapon-1.png);
-}
-
-.icon-l-weapon-2 {
-  background-image: url(http://darksouls3.wdfiles.com/local--files/image-sets:menu-icons/l-weapon-2.png);
-}
-
-.icon-l-weapon-3 {
-  background-image: url(http://darksouls3.wdfiles.com/local--files/image-sets:menu-icons/l-weapon-3.png);
-}
-
-.icon-magic-dmg {
-  background-image: url(http://darksouls3.wdfiles.com/local--files/image-sets:menu-icons/magic-dmg.png);
-}
-
-.icon-magic-def {
-  background-image: url(http://darksouls3.wdfiles.com/local--files/image-sets:menu-icons/magic-def.png);
-}
-
-.icon-magic-guard {
-  background-image: url(http://darksouls3.wdfiles.com/local--files/image-sets:menu-icons/magic-guard.png);
-}
-
-.icon-num-items-held {
-  background-image: url(http://darksouls3.wdfiles.com/local--files/image-sets:menu-icons/num-items-held.png);
-}
-
-.icon-num-items-stored {
-  background-image: url(http://darksouls3.wdfiles.com/local--files/image-sets:menu-icons/num-items-stored.png);
-}
-
-.icon-physical-dmg {
-  background-image: url(http://darksouls3.wdfiles.com/local--files/image-sets:menu-icons/physical-dmg.png);
-}
-
-.icon-physical-dmg-type {
-  background-image: url(http://darksouls3.wdfiles.com/local--files/image-sets:menu-icons/physical-dmg-type.png);
-}
-
-.icon-physical-def {
-  background-image: url(http://darksouls3.wdfiles.com/local--files/image-sets:menu-icons/physical-def.png);
-}
-
-.icon-physical-guard {
-  background-image: url(http://darksouls3.wdfiles.com/local--files/image-sets:menu-icons/physical-guard.png);
-}
-
-.icon-poise {
-  background-image: url(http://darksouls3.wdfiles.com/local--files/image-sets:menu-icons/poise.png);
-}
-
-.icon-poison {
-  background-image: url(http://darksouls3.wdfiles.com/local--files/image-sets:menu-icons/poison.png);
-}
-
-.icon-required-souls {
-  background-image: url(http://darksouls3.wdfiles.com/local--files/image-sets:menu-icons/required-souls.png);
-}
-
-.icon-r-weapon-1 {
-  background-image: url(http://darksouls3.wdfiles.com/local--files/image-sets:menu-icons/r-weapon-1.png);
-}
-
-.icon-r-weapon-2 {
-  background-image: url(http://darksouls3.wdfiles.com/local--files/image-sets:menu-icons/r-weapon-2.png);
-}
-
-.icon-r-weapon-3 {
-  background-image: url(http://darksouls3.wdfiles.com/local--files/image-sets:menu-icons/r-weapon-3.png);
-}
-
-.icon-slash-def {
-  background-image: url(http://darksouls3.wdfiles.com/local--files/image-sets:menu-icons/slash-def.png);
-}
-
-.icon-souls {
-  background-image: url(http://darksouls3.wdfiles.com/local--files/image-sets:menu-icons/souls.png);
-}
-
-.icon-soul-value {
-  background-image: url(http://darksouls3.wdfiles.com/local--files/image-sets:menu-icons/soul-value.png);
-}
-
-.icon-spell-buff {
-  background-image: url(http://darksouls3.wdfiles.com/local--files/image-sets:menu-icons/spell-buff.png);
-}
-
-.icon-spell-type {
-  background-image: url(http://darksouls3.wdfiles.com/local--files/image-sets:menu-icons/spell-type.png);
-}
-
-.icon-spell-fp-cost {
-  background-image: url(http://darksouls3.wdfiles.com/local--files/image-sets:menu-icons/spell-fp-cost.png);
-}
-
-.icon-stability {
-  background-image: url(http://darksouls3.wdfiles.com/local--files/image-sets:menu-icons/stability.png);
-}
-
-.icon-stamina {
-  background-image: url(http://darksouls3.wdfiles.com/local--files/image-sets:menu-icons/stamina.png);
-}
-
-.icon-strength {
-  background-image: url(http://darksouls3.wdfiles.com/local--files/image-sets:menu-icons/strength.png);
-}
-
-.icon-strike-def {
-  background-image: url(http://darksouls3.wdfiles.com/local--files/image-sets:menu-icons/strike-def.png);
-}
-
-.icon-thrust-def {
-  background-image: url(http://darksouls3.wdfiles.com/local--files/image-sets:menu-icons/thrust-def.png);
-}
-
-.icon-vigor {
-  background-image: url(http://darksouls3.wdfiles.com/local--files/image-sets:menu-icons/vigor.png);
-}
-
-.icon-vitality {
-  background-image: url(http://darksouls3.wdfiles.com/local--files/image-sets:menu-icons/vitality.png);
-}
-
-.icon-weapon-category {
-  background-image: url(http://darksouls3.wdfiles.com/local--files/image-sets:menu-icons/weapon-category.png);
-}
-
-.icon-weapon-skill-fp-cost {
-  background-image: url(http://darksouls3.wdfiles.com/local--files/image-sets:menu-icons/weapon-skill-fp-cost.png);
-}
-
-.icon-weapon-skill {
-  background-image: url(http://darksouls3.wdfiles.com/local--files/image-sets:menu-icons/weapon-skill.png);
-}
-
-.icon-weight {
-  background-image: url(http://darksouls3.wdfiles.com/local--files/image-sets:menu-icons/weight.png);
-}
-
-.icon-weight-ratio {
-  background-image: url(http://darksouls3.wdfiles.com/local--files/image-sets:menu-icons/weight-ratio.png);
-}
-
-.icon-skill {
-  background-image: url(http://darksouls3.wdfiles.com/local--files/image-sets:menu-icons/skill.png);
-}
-
-.icon-character-section {
-  background-image: url(https://darksouls3.wiki.fextralife.com/file/Dark-Souls-3/small_envoy_banner1.png);
-}
-.icon-armor-section {
-  background-image: url(https://darksouls3.wiki.fextralife.com/file/Dark-Souls-3/alva_helm.png);
-}
-.icon-weapon-section {
-  background-image: url(https://darksouls3.wiki.fextralife.com/file/Dark-Souls-3/greataxe-icon.png);
-}
-.icon-shield-section {
-  background-image: url(https://darksouls3.wiki.fextralife.com/file/Dark-Souls-3/kite_shield-icon.png);
-}
-.icon-spell-section {
-  background-image: url(https://darksouls3.wiki.fextralife.com/file/Dark-Souls-3/braille_divine_tome_of_lothric.png);
-}
-.icon-catalyst-section {
-  background-image: url(https://darksouls3.wiki.fextralife.com/file/Dark-Souls-3/talisman-icon.png);
-}
 
 /* Equipment Tab Styles */
 .equipment-tab {
@@ -970,7 +448,177 @@ body {
   overflow-y: auto;
   display: flex;
   flex-direction: column;
+  align-items: center;
+}
+
+.equipment-panel {
+  display: flex;
+  flex-direction: column;
   gap: 25px;
+  width: 100%;
+  max-width: 600px;
+}
+
+.equipment-row {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 20px;
+  background: rgba(20, 15, 10, 0.5);
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+}
+
+.equipment-row-title {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--gold-bright);
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 10px;
+  text-shadow: 0 0 8px rgba(232, 212, 168, 0.4);
+}
+
+/* Equipped Item Grids */
+.equipped-items-grid, .equipped-spells-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  justify-items: center;
+}
+
+/* Individual item slots */
+.equipped-slot {
+  position: relative;
+  cursor: pointer;
+}
+
+.item-square {
+  width: 60px;
+  height: 60px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 2px solid var(--border-color);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+
+.item-square:hover {
+  border-color: var(--gold-bright);
+  box-shadow: 0 0 8px rgba(232, 212, 168, 0.3);
+  transform: scale(1.05);
+}
+
+.item-square.spell-square {
+  border-radius: 50%;
+  background: rgba(40, 32, 192, 0.2);
+  border-color: rgba(64, 128, 192, 0.5);
+}
+
+.item-square.spell-square:hover {
+  border-color: #4080c0;
+  box-shadow: 0 0 8px rgba(64, 128, 192, 0.4);
+}
+
+/* Item icon within squares */
+.item-square .item-icon {
+  width: 48px !important;
+  height: 48px !important;
+  z-index: 1;
+}
+
+/* Empty slot styling */
+.empty-slot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background: rgba(20, 15, 10, 0.5);
+  color: rgba(201, 185, 150, 0.3);
+  font-size: 24px;
+}
+
+.empty-icon {
+  font-weight: bold;
+  text-shadow: 0 0 4px rgba(201, 185, 150, 0.2);
+}
+
+/* Tooltip styling */
+.item-tooltip {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.95);
+  color: var(--gold-bright);
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: normal;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+  z-index: 1000;
+  min-width: 150px;
+  text-align: left;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.item-tooltip div {
+  line-height: 1.3;
+  margin-bottom: 2px;
+}
+
+.item-tooltip div:last-child {
+  margin-bottom: 0;
+}
+
+.equipped-slot:hover .item-tooltip {
+  opacity: 1;
+  visibility: visible;
+  bottom: calc(100% + 5px);
+}
+
+.item-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid rgba(0, 0, 0, 0.9);
+}
+
+/* Spells grid specific styling */
+.equipped-spells-grid .item-square {
+  background: rgba(32, 24, 64, 0.3);
+  border-color: rgba(32, 64, 128, 0.3);
+}
+
+.equipped-spells-grid .empty-slot {
+  background: rgba(32, 24, 64, 0.5);
+}
+
+/* Bag items grid */
+.bag-items-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(55px, 1fr));
+  gap: 10px;
+  justify-items: center;
 }
 
 .equipment-section,
@@ -1364,8 +1012,28 @@ body {
   color: #aaddff;
 }
 
-/* Equipment Icon Mappings */
-.icon-weapon {
+/* Item Icon System - Dynamic Images for Inventory Items */
+.item-icon {
+  width: 32px !important;
+  height: 32px !important;
+  background-size: contain !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  border-radius: 2px !important;
+  border: 1px solid rgba(201, 185, 150, 0.3) !important;
+  background-color: var(--dark-brown) !important;
+}
+
+/* Individual Item Icon Classes */
+.icon-sword {
+  background-image: url(https://darksouls3.wiki.fextralife.com/file/Dark-Souls-3/longsword-icon.png);
+}
+
+.icon-dagger {
+  background-image: url(https://darksouls3.wiki.fextralife.com/file/Dark-Souls-3/dagger-icon.png);
+}
+
+.icon-greatsword {
   background-image: url(https://darksouls3.wiki.fextralife.com/file/Dark-Souls-3/greataxe-icon.png);
 }
 
@@ -1373,8 +1041,42 @@ body {
   background-image: url(https://darksouls3.wiki.fextralife.com/file/Dark-Souls-3/kite_shield-icon.png);
 }
 
-.icon-armor {
+.icon-armor-light {
+  background-image: url(https://darksouls3.wiki.fextralife.com/file/Dark-Souls-3/hard_leather_armor-icon.png);
+}
+
+.icon-armor-medium {
+  background-image: url(https://darksouls3.wiki.fextralife.com/file/Dark-Souls-3/elite_knight_armor-icon.png);
+}
+
+.icon-armor-heavy {
+  background-image: url(https://darksouls3.wiki.fextralife.com/file/Dark-Souls-3/wolnir%27s_king_armor-icon.png);
+}
+
+.icon-helmet {
   background-image: url(https://darksouls3.wiki.fextralife.com/file/Dark-Souls-3/alva_helm.png);
+}
+
+.icon-catalyst {
+  background-image: url(https://darksouls3.wiki.fextralife.com/file/Dark-Souls-3/talisman-icon.png);
+}
+
+.icon-bow {
+  background-image: url(https://darksouls3.wiki.fextralife.com/file/Dark-Souls-3/longbow-icon.png);
+}
+
+/* Consumables */
+.icon-healing-potion {
+  background-image: url(https://darksouls3.wiki.fextralife.com/file/Dark-Souls-3/ashen_estus_flask.png);
+}
+
+.icon-mana-potion {
+  background-image: url(https://darksouls3.wiki.fextralife.com/file/Dark-Souls-3/budding_green_crystal.png);
+}
+
+/* Equipment Icon Mappings */
+.icon-weapon {
+  background-image: url(https://darksouls3.wiki.fextralife.com/file/Dark-Souls-3/greataxe-icon.png);
 }
 
 .icon-block {
@@ -1394,9 +1096,29 @@ body {
   background-image: url(http://darksouls3.wdfiles.com/local--files/image-sets:menu-icons/slash-def.png);
 }
 
+.icon-fire {
+  background-image: url(http://darksouls3.wdfiles.com/local--files/image-sets:menu-icons/fire-dmg.png);
+}
+
+.icon-magic {
+  background-image: url(http://darksouls3.wdfiles.com/local--files/image-sets:menu-icons/magic-dmg.png);
+}
+
+.icon-dark {
+  background-image: url(http://darksouls3.wdfiles.com/local--files/image-sets:menu-icons/dark-dmg.png);
+}
+
 /* Spell Type Icons */
 .icon-miracle {
   background-image: url(https://darksouls3.wiki.fextralife.com/file/Dark-Souls-3/talisman-icon.png);
+}
+
+.icon-sorcery {
+  background-image: url(https://darksouls3.wiki.fextralife.com/file/Dark-Souls-3/staff-icon.png);
+}
+
+.icon-pyromancy {
+  background-image: url(https://darksouls3.wiki.fextralife.com/file/Dark-Souls-3/pyromancy_flame-icon.png);
 }
 
 .icon-cryomancy {
@@ -1412,18 +1134,578 @@ body {
   background-image: url(http://darksouls3.wdfiles.com/local--files/image-sets:menu-icons/physical-dmg.png);
 }
 
+.icon-defense {
+  background-image: url(http://darksouls3.wdfiles.com/local--files/image-sets:menu-icons/physical-def.png);
+}
+
+/* Main Header and Overview Styles */
+.main-header {
+  text-align: center;
+  margin-bottom: 40px;
+  padding: 20px;
+  background: rgba(20, 15, 10, 0.3);
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+}
+
+.main-title {
+  font-size: 32px;
+  font-weight: 900;
+  letter-spacing: 6px;
+  color: var(--gold-bright);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  text-shadow: 0 0 15px rgba(232, 212, 168, 0.6);
+  background: linear-gradient(45deg, var(--gold-bright), #f0d4a2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.subtitle {
+  font-size: 16px;
+  color: var(--stat-text);
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* Section Headers and Dynamic Content */
+.main-section-title {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--gold-bright);
+  text-transform: uppercase;
+  margin-bottom: 15px;
+  text-align: center;
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: 8px;
+  text-shadow: 0 0 8px rgba(232, 212, 168, 0.4);
+}
+
+.section-title {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  color: var(--gold-bright);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 6px;
+}
+
+.section-content {
+  padding-top: 8px;
+}
+
+/* Overview Cards */
+.sections-overview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.section-card {
+  background: rgba(20, 15, 10, 0.4);
+  border: 2px solid var(--border-color);
+  border-radius: 6px;
+  padding: 20px;
+  text-align: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  flex: 1 1 calc(50% - 10px);
+  max-width: calc(50% - 10px);
+}
+
+.section-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold-bright), var(--stat-text));
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.section-card:hover {
+  background: rgba(20, 15, 10, 0.6);
+  border-color: var(--gold-bright);
+  box-shadow: 0 6px 25px rgba(232, 212, 168, 0.15);
+  transform: translateY(-2px);
+}
+
+.section-card:hover::before {
+  transform: scaleX(1);
+}
+
+.section-title {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--gold-bright);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  color: var(--gold-bright);
+}
+
+.section-description {
+  font-size: 14px;
+  color: var(--stat-text);
+  margin-bottom: 15px;
+  line-height: 1.4;
+}
+
+.section-count {
+  font-size: 16px;
+  color: var(--gold-text);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Section Headers within Dynamic Content */
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+  margin-bottom: 0;
+  padding: 10px 20px;
+  background: transparent;
+  border-radius: 0;
+  border: 1px solid var(--border-color);
+  border-left: 0;
+  border-right: 0;
+  position: relative;
+}
+
+.section-header::before {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--gold-bright);
+  z-index: 1;
+}
+
+.section-header h1 {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: var(--gold-bright);
+  text-transform: uppercase;
+  text-shadow: 0 0 10px rgba(232, 212, 168, 0.5);
+  margin: 0;
+}
+
+.back-button {
+  background: rgba(40, 32, 24, 0.8);
+  border: 2px solid var(--border-color);
+  border-radius: 4px;
+  padding: 8px 16px;
+  color: var(--gold-text);
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.back-button:hover {
+  background: rgba(40, 32, 24, 0.9);
+  border-color: var(--gold-bright);
+  color: var(--gold-bright);
+  box-shadow: 0 0 8px rgba(232, 212, 168, 0.3);
+}
+
+/* Dynamic Content Areas */
+.dynamic-content {
+  padding: 0;
+  background: transparent;
+  border-radius: 0;
+  border: none;
+  height: calc(100vh - 140px);
+  overflow: hidden;
+}
+
+.character-layout-wrapper {
+  height: 100%;
+}
+
+/* Character Layout */
+.character-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  height: 100%;
+  padding: 20px 0;
+}
+
+.character-portrait-panel {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 15px;
+}
+
+.character-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  overflow-y: auto;
+  padding-right: 10px;
+  max-height: 100%;
+}
+
+/* Character section styling for fallback layout */
+.character-section {
+  background: rgba(20, 15, 10, 0.5);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 15px;
+  margin-bottom: 16px;
+}
+
+.character-section:last-child {
+  margin-bottom: 0;
+}
+
+.core-resources-section {
+  margin-top: 24px;
+  width: 100%;
+  background: rgba(20, 15, 10, 0.5);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 15px;
+}
+
+.core-resources-section h2 {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  color: var(--gold-bright);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.avatar-placeholder-section {
+  background: rgba(20, 15, 10, 0.5);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 15px;
+  text-align: center;
+}
+
+.avatar-placeholder {
+  width: 300px;
+  height: 300px;
+  border: 3px solid var(--border-color);
+  border-radius: 4px;
+  background: linear-gradient(135deg, #2a1f18 0%, #1a1410 100%);
+  margin: 0 auto;
+}
+
+.resources-section,
+.stats-section {
+  background: rgba(20, 15, 10, 0.5);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 15px;
+}
+
+.resources-section h2,
+.stats-section h2 {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  color: var(--gold-bright);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* Stats specific row height ~30-34px */
+.resources-section .resource-field,
+.stats-section .stat-item {
+  padding: 6px 8px;
+  margin-bottom: 6px;
+}
+
+/* Enhanced Field Types */
+.simple-field {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  margin-bottom: 4px;
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 3px;
+  border: 1px solid rgba(74, 56, 40, 0.5);
+}
+
+.field-name {
+  font-weight: 600;
+  color: var(--gold-text);
+  margin-right: 12px;
+  text-transform: capitalize;
+  min-width: 100px;
+}
+
+.field-value {
+  color: var(--gold-bright);
+  font-weight: 500;
+}
+
+/* Object Content Areas */
+.object-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 6px;
+}
+
+.items-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 25px;
+}
+
+.items-section {
+  background: rgba(20, 15, 10, 0.3);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 20px;
+}
+
+.items-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 15px;
+}
+
+/* Improved Nested Sections */
+.nested-section {
+  margin-top: 12px;
+  padding: 12px 16px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  border: 1px solid rgba(74, 56, 40, 0.3);
+}
+
+/* Field Images for Character Portraits */
+.field-image {
+  max-width: 600px;
+  max-height: 600px;
+  width: auto;
+  height: auto;
+  border-radius: 4px;
+  border: 1px solid rgba(74, 56, 40, 0.5);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  display: block;
+  margin: 0 auto;
+}
+
+/* Value Fields (for main character info like level, souls) */
+.value-field {
+  display: flex;
+  align-items: center;
+  padding: 10px 14px;
+  background: rgba(20, 15, 10, 0.4);
+  border-radius: 4px;
+  margin-bottom: 6px;
+  border: 1px solid rgba(74, 56, 40, 0.3);
+}
+
+.value-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  opacity: 0.9;
+}
+
+.value-name {
+  font-weight: 600;
+  color: var(--gold-text);
+  margin-right: 12px;
+  text-transform: capitalize;
+  flex: 1;
+}
+
+.value-display {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--gold-bright);
+}
+
+/* Enhanced Stat Fields */
+.stat-field {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+  margin-bottom: 4px;
+  border: 1px solid rgba(74, 56, 40, 0.4);
+  transition: all 0.2s ease;
+}
+
+.stat-field:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.stat-name {
+  font-weight: 600;
+  color: var(--stat-text);
+  flex: 1;
+  margin-right: 10px;
+}
+
+.stat-values {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.stat-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--gold-text);
+}
+
+.stat-separator {
+  color: var(--stat-text);
+  opacity: 0.7;
+}
+
+.stat-max {
+  color: var(--stat-text);
+  font-weight: 400;
+}
+
+.stat-modifier {
+  color: var(--stat-text);
+  font-size: 13px;
+  margin-left: 4px;
+}
+
+/* Resource Fields */
+.resource-field {
+  display: flex;
+  align-items: center;
+  padding: 10px 14px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  margin-bottom: 6px;
+  border: 1px solid rgba(74, 56, 40, 0.4);
+}
+
+.resource-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  opacity: 0.9;
+}
+
+.resource-name {
+  font-weight: 600;
+  color: var(--stat-text);
+  margin-right: 12px;
+  flex: 1;
+  text-transform: capitalize;
+}
+
+.resource-values {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--gold-bright);
+}
+
+.resource-value {
+  font-weight: 700;
+}
+
+/* Improved Array Content */
+.array-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.array-item {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 3px;
+  padding: 10px;
+  border: 1px solid rgba(74, 56, 40, 0.3);
+}
+
+/* Primitive Values */
+.primitive-value {
+  padding: 8px 12px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+  font-style: italic;
+  color: var(--stat-text);
+}
+
+/* Empty State Styling */
+.empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--stat-text);
+  font-style: italic;
+}
+
+.empty-state p {
+  margin: 0;
+  font-size: 16px;
+}
+
 /* Responsive adjustments for equipment tab */
 @media (max-width: 768px) {
   .equipped-items {
     grid-template-columns: 1fr;
   }
-  
+
   .inventory-grid,
-  .spells-grid {
+  .spells-grid,
+  .items-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .equipment-tab {
     padding: 15px;
+  }
+
+  .main-title {
+    font-size: 24px;
+    letter-spacing: 4px;
+  }
+
+  .sections-overview {
+    grid-template-columns: 1fr;
+  }
+
+  .section-header h1 {
+    font-size: 18px;
+    letter-spacing: 2px;
   }
 }
