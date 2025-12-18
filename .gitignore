@@ -42,3 +42,10 @@ coverage/
 .parcel-cache/
 .next/
 .nuxt/
+
+# Package files
+*.deb
+*.rpm
+*.dmg
+*.exe
+*.msi
