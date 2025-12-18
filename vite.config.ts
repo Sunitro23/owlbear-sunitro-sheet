@@ -8,10 +8,6 @@ export default defineConfig({
   server: {
     port: 5173,
     host: "0.0.0.0",          // ← important
-    https: {
-      key: fs.readFileSync("./localhost+2-key.pem"),
-      cert: fs.readFileSync("./localhost+2.pem"),
-    },
     cors: {
       origin: ["https://www.owlbear.rodeo", "https://owlbear.rodeo", "http://localhost:8000"],
       credentials: true,
@@ -22,17 +18,12 @@ export default defineConfig({
       "Access-Control-Allow-Credentials": "true",
     },
     proxy: {
-      "/characters": {
-        target: "http://localhost:8000",
+      '/characters': {
+        target: 'http://localhost:8000',
         changeOrigin: true,
         secure: false,
-      },
-      "/api": {
-        target: "http://localhost:8000",
-        changeOrigin: true,
-        secure: false,
-      },
-    },
+      }
+    }
   },
   build: {
     sourcemap: true,

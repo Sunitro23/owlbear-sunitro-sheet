@@ -1,87 +1,94 @@
-import React, { useState, useEffect, memo } from 'react';
-import CharacterSheet from './sections/CharacterSheet/CharacterSheet';
-import Items from './sections/Items/Items';
+import React, { useState, memo } from 'react';
+import CharacterSheet from './sections/CharacterSheet/CharacterSheet.tsx';
+import Items from './sections/Items/Items.tsx';
+import MobileTabNavigation from './components/MobileTabNavigation.tsx';
+import { useCharacterData } from './hooks/useCharacterData.ts';
+import { CharacterSheetWrapper } from './components/CharacterSheetWrapper.tsx';
 import type { NewCharacterData } from './types/index';
-import './style.css';
 
-const API_BASE = '/characters';
+type TabType = 'equipment' | 'character';
 
-const fetchCharacter = async (id: number): Promise<NewCharacterData> => {
-  const response = await fetch(`${API_BASE}/${id}`);
-
-  if (!response.ok) {
-    throw new Error('Character not found');
-  }
-
-  return response.json();
-};
-
-
-
-const App: React.FC = () => {
-  const [characterData, setCharacterData] = useState<NewCharacterData | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    const loadData = async () => {
-      try {
-        setLoading(true);
-        setError(null);
-        const data = await fetchCharacter(1);
-        setCharacterData(data);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : 'Failed to load character data');
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    loadData();
-  }, []);
-  
-  if (loading) {
-    return (
-      <div className="character-sheet">
-        <div className="loading-message">Loading character data...</div>
+const DesktopLayout: React.FC<{
+  characterData: NewCharacterData;
+  onCharacterUpdate: (updatedData: NewCharacterData) => void;
+  onRefresh: () => Promise<void>;
+}> = ({ characterData, onCharacterUpdate, onRefresh }) => (
+      <div className="flex w-full">
+    {/* Left Panel - Equipment Grid */}
+    <div className="equipment-panel-left">
+      <div className="equipment-header">
+        <div className="equipment-tab-icon">⚔</div>
+        <span className="equipment-title">Equipment</span>
+        <span className="equipment-subtitle">Select item to equip</span>
       </div>
-    );
-  }
+      <Items characterData={characterData} onCharacterUpdate={onCharacterUpdate} onRefresh={onRefresh} />
+    </div>
 
-  if (error) {
-    return (
-      <div className="character-sheet">
-        <div className="loading-message">Error: {error}</div>
-      </div>
-    );
-  }
-
-  if (!characterData) {
-    return (
-      <div className="character-sheet">
-        <div className="loading-message">No character data available</div>
-      </div>
-    );
-  }
-  
-  return (
-    <div className="character-sheet">
-      <div className="main-header">
-        <h1>Character Sheet</h1>
-      </div>
-
-      <div className="character-section">
+    {/* Right Panel - Character Stats */}
+    <div className="character-panel-right">
+      <div className="player-status-section">
+        <h3 className="section-title">Player Status</h3>
         <CharacterSheet
           data={characterData.character}
-          title="Character"
+          title=""
         />
       </div>
-
-      <div className="inventory-section">
-        <h2>Inventory</h2>
-        <Items characterData={characterData} />
-      </div>
     </div>
+  </div>
+);
+
+const MobileLayout: React.FC<{
+  characterData: NewCharacterData;
+  activeTab: TabType;
+  onCharacterUpdate: (updatedData: NewCharacterData) => void;
+  onRefresh: () => Promise<void>;
+}> = ({ characterData, activeTab, onCharacterUpdate, onRefresh }) => (
+  <div className="block flex-1 min-h-[calc(100vh-80px)] lg:hidden">
+    {activeTab === 'equipment' && (
+      <div className="mobile-panel">
+        <div className="equipment-header">
+          <div className="equipment-tab-icon">⚔</div>
+          <span className="equipment-title">Equipment</span>
+          <span className="equipment-subtitle">Select item to equip</span>
+        </div>
+        <Items characterData={characterData} onCharacterUpdate={onCharacterUpdate} onRefresh={onRefresh} />
+      </div>
+    )}
+    {activeTab === 'character' && (
+      <div className="mobile-panel">
+        <div className="character-header">
+          <h3 className="section-title">Player Status</h3>
+        </div>
+        <CharacterSheet
+          data={characterData.character}
+          title=""
+        />
+      </div>
+    )}
+  </div>
+);
+
+const App: React.FC = () => {
+  const { characterData, loading, error, updateCharacterData, refreshCharacterData } = useCharacterData();
+  const [activeTab, setActiveTab] = useState<TabType>('equipment');
+
+  const handleCharacterUpdate = async (updatedData: NewCharacterData) => {
+    // Update with the provided data immediately for responsiveness
+    updateCharacterData(updatedData);
+    // Then refresh from API to ensure data consistency
+    await refreshCharacterData();
+  };
+
+  return (
+    <CharacterSheetWrapper loading={loading} error={error} characterData={characterData}>
+      <div className="dark-souls-ui">
+        {/* Mobile Tab Navigation */}
+        <MobileTabNavigation activeTab={activeTab} onTabChange={setActiveTab} />
+
+        <DesktopLayout characterData={characterData!} onCharacterUpdate={handleCharacterUpdate} onRefresh={refreshCharacterData} />
+        <MobileLayout characterData={characterData!} activeTab={activeTab} onCharacterUpdate={handleCharacterUpdate} onRefresh={refreshCharacterData} />
+      </div>
+    </CharacterSheetWrapper>
   );
 };
 
