@@ -14,7 +14,7 @@ const InventorySection: React.FC<InventorySectionProps> = ({ characterData, onRe
     item,
     index,
   }));
-
+  
   return <ItemSection title='Inventory' layout='grid' slots={inventorySlots} characterData={characterData} showQuantity={true} onRefresh={onRefresh} />;
 };
 

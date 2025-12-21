@@ -1,19 +1,8 @@
-import { useState, useEffect } from 'react';
-import type { NewCharacterData } from '../types/index';
+import { useState, useEffect } from "react";
+import type { NewCharacterData } from "../types/index";
+import { fetchCharacter } from "../services/characterApi";
 
-const API_BASE = '/characters';
-
-const fetchCharacter = async (id: number): Promise<NewCharacterData> => {
-  const response = await fetch(`${API_BASE}/${id}`);
-
-  if (!response.ok) {
-    throw new Error('Character not found');
-  }
-
-  return response.json();
-};
-
-export const useCharacterData = (characterId: number = 1) => {
+export const useCharacterData = (characterId: string | number = "1") => {
   const [characterData, setCharacterData] = useState<NewCharacterData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -22,34 +11,23 @@ export const useCharacterData = (characterId: number = 1) => {
     setCharacterData(updatedData);
   };
 
-  const refreshCharacterData = async () => {
+  const loadCharacterData = async () => {
     try {
       setLoading(true);
       setError(null);
-      const data = await fetchCharacter(characterId);
+      const data = await fetchCharacter(String(characterId));
       setCharacterData(data);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to refresh character data');
+      setError(err instanceof Error ? err.message : "Failed to load character data");
     } finally {
       setLoading(false);
     }
   };
 
-  useEffect(() => {
-    const loadData = async () => {
-      try {
-        setLoading(true);
-        setError(null);
-        const data = await fetchCharacter(characterId);
-        setCharacterData(data);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : 'Failed to load character data');
-      } finally {
-        setLoading(false);
-      }
-    };
+  const refreshCharacterData = () => loadCharacterData();
 
-    loadData();
+  useEffect(() => {
+    loadCharacterData();
   }, [characterId]);
 
   return {

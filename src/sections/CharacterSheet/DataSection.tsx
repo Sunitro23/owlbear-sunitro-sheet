@@ -21,24 +21,15 @@ export const DataSection = <T extends Config>({ title, data, configs, getDisplay
   const displayData = getDisplayData(data, configs);
 
   return (
-    <div className="ds-stats-section">
-      <h3 className="ds-section-header">{title}</h3>
-      <div className="ds-stats-grid">
+    <div className="px-20px pt-0 pb-20px border-b border-ds-border-dark mb-10px">
+      <h3 className="ds-section-title">{title}</h3>
+      <div className="flex flex-col gap-8px pb-15px">
         {displayData.map((item) => {
           if (type === "stats") {
             return <DataRow key={item.key} label={item.label} icon={item.icon} valueDisplay={{ type: "stat", value: item.value, modifier: item.modifier }} />;
           } else {
-            return (
-              <DataRow
-                key={item.key}
-                label={item.label}
-                icon={item.icon}
-                valueDisplay={{
-                  type: "resource",
-                  displayValue: item.displayValue,
-                }}
-              />
-            );
+            const valueDisplay: { type: "resource"; displayValue: string } = { type: "resource", displayValue: item.displayValue as string };
+            return <DataRow key={item.key} label={item.label} icon={item.icon} valueDisplay={valueDisplay} />;
           }
         })}
       </div>

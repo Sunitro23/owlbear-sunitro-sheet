@@ -1,8 +1,7 @@
 import React from 'react';
 import type { Character } from '../../types';
 import { CharacterPortrait } from './CharacterPortrait';
-import { ResourcesSection } from './ResourcesSection';
-import { StatsSection } from './StatsSection';
+import { ResourcesSection, StatsSection } from './DataSection';
 
 interface CharacterSheetProps {
   data: Character;
@@ -11,7 +10,7 @@ interface CharacterSheetProps {
 
 export const CharacterSheet: React.FC<CharacterSheetProps> = ({ data }) => {
   return (
-    <div className='ds-character-panel'>
+    <div className='p-0 overflow-y-auto bg-transparent'>
       <CharacterPortrait data={data} />
       <ResourcesSection data={data} />
       <StatsSection data={data} />

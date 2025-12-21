@@ -8,14 +8,13 @@ export default defineConfig({
   server: {
     port: 5173,
     host: "0.0.0.0",          // ← important
-    cors: {
-      origin: ["https://www.owlbear.rodeo", "https://owlbear.rodeo", "http://localhost:8000"],
-      credentials: true,
+    https: {
+      key: fs.readFileSync('localhost+2-key.pem'),
+      cert: fs.readFileSync('localhost+2.pem'),
     },
-    // Add this header override just in case
-    headers: {
-      "Access-Control-Allow-Origin": ["https://www.owlbear.rodeo", "http://localhost:8000"],
-      "Access-Control-Allow-Credentials": "true",
+    cors: {
+      origin: ["https://www.owlbear.rodeo", "https://owlbear.rodeo"],
+      credentials: true,
     },
     proxy: {
       '/characters': {
